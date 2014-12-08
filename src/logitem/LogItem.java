@@ -14,7 +14,7 @@ import com.google.gson.JsonObject;
 public interface LogItem{
     
     /**
-     * Should return the 
+     * Should return the jsonic string representation
      * @return 
      */
     String toJson();

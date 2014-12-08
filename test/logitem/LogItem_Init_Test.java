@@ -25,13 +25,13 @@ import static org.junit.Assert.*;
  *
  * @author root
  */
-public class LogItem_Test {
+public class LogItem_Init_Test {
     
     private LogItem logItem;
     
     private Gson gson;
     
-    public LogItem_Test() {
+    public LogItem_Init_Test() {
         logItem = new DefaultLogItem();
         gson = new Gson();
     }
