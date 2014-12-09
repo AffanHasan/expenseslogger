@@ -25,11 +25,15 @@ public interface LogItem{
      */
     JsonObject getJsonObject();
     
-    String getCategoryAsText();
+    String getCategory();
     
-    String getDescriptionAsText();
+    String getDescription();
     
     String getCurrencyCode();
     
     float getExpenseAmount();
+    
+    void setDescription(String description);
+    
+    void setCategory(String category);
 }

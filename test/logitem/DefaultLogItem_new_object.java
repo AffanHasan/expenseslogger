@@ -25,13 +25,13 @@ import static org.junit.Assert.*;
  *
  * @author root
  */
-public class Newly_Created_LogItem_Test {
+public class DefaultLogItem_new_object {
     
     private LogItem logItem;
     
     private Gson gson;
     
-    public Newly_Created_LogItem_Test() {
+    public DefaultLogItem_new_object() {
         logItem = new DefaultLogItem();
         gson = new Gson();
     }
@@ -98,11 +98,11 @@ public class Newly_Created_LogItem_Test {
     
     @Test
     public void new_logItem_must_contain_empty_text_for_category(){
-        assertEquals("", this.logItem.getCategoryAsText());
+        assertEquals("", this.logItem.getCategory());
     }
     
     @Test
     public void logItem_must_return_empty_text_for_description(){
-        assertEquals("", this.logItem.getDescriptionAsText());
+        assertEquals("", this.logItem.getDescription());
     }
 }

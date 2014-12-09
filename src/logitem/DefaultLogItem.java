@@ -45,7 +45,7 @@ public class DefaultLogItem implements LogItem {
     }
 
     @Override
-    public String getCategoryAsText() {
+    public String getCategory() {
         try{
             return this.data.get("category").getAsString();
         }catch(NullPointerException e){
@@ -54,7 +54,7 @@ public class DefaultLogItem implements LogItem {
     }
 
     @Override
-    public String getDescriptionAsText() {
+    public String getDescription() {
         try{
             return this.data.get("description").getAsString();
         }catch(NullPointerException e){
@@ -78,5 +78,15 @@ public class DefaultLogItem implements LogItem {
         }catch(NullPointerException e){
             throw new NullPointerException();
         }
+    }
+
+    @Override
+    public void setDescription(String description) {
+        this.data.addProperty("description", description);
+    }
+
+    @Override
+    public void setCategory(String category) {
+        this.data.addProperty("category", category);
     }
 }
