@@ -24,4 +24,12 @@ public interface LogItem{
      * @return 
      */
     JsonObject getJsonObject();
+    
+    String getCategoryAsText();
+    
+    String getDescriptionAsText();
+    
+    String getCurrencyCode();
+    
+    float getExpenseAmount();
 }

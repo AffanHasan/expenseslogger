@@ -25,13 +25,13 @@ import static org.junit.Assert.*;
  *
  * @author root
  */
-public class LogItem_Init_Test {
+public class Newly_Created_LogItem_Test {
     
     private LogItem logItem;
     
     private Gson gson;
     
-    public LogItem_Init_Test() {
+    public Newly_Created_LogItem_Test() {
         logItem = new DefaultLogItem();
         gson = new Gson();
     }
@@ -86,17 +86,23 @@ public class LogItem_Init_Test {
     
     @Test
     public void currency_locale_should_match_systems_default_currency_locale_for_a_newly_created_object() {
-        assertEquals(this.logItem.getJsonObject().getAsJsonObject("expense_amount").get("currency_code").getAsString(),
+        assertEquals(this.logItem.getCurrencyCode(),
                     CommonPropsFactory.getInstance().getSystemCurrencyCode());
     }
     
     @Test
     public void by_default_amount_should_be_zero_point_zero(){
-        LogItem logItem = new DefaultLogItem();
         assertEquals(0.0, 
-        logItem.getJsonObject()
-                .getAsJsonObject("expense_amount").get("amount").getAsFloat(),
-                0.0
-        );
+        this.logItem.getExpenseAmount(), 0.0);
+    }
+    
+    @Test
+    public void new_logItem_must_contain_empty_text_for_category(){
+        assertEquals("", this.logItem.getCategoryAsText());
+    }
+    
+    @Test
+    public void logItem_must_return_empty_text_for_description(){
+        assertEquals("", this.logItem.getDescriptionAsText());
     }
 }

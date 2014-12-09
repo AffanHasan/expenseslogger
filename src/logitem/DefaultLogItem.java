@@ -19,12 +19,14 @@ public class DefaultLogItem implements LogItem {
     
     public DefaultLogItem(){
         data = new JsonObject();
-//      Adding "expense_amount"
-        JsonObject expenseAmount = new JsonObject();
-        expenseAmount.addProperty("currency_code", commonprops.
-                CommonPropsFactory.getInstance().getSystemCurrencyCode());
-        expenseAmount.addProperty("amount", 0.0);
-        data.add("expense_amount",  expenseAmount);
+//      Adding "expense" as JsonObject
+        JsonObject expense = new JsonObject();
+        expense.addProperty("currency_code", CommonPropsFactory.getInstance().getSystemCurrencyCode());
+        expense.addProperty("amount", 0.0);        
+        this.data.add("expense", expense);
+
+        this.data.addProperty("category", "");
+        this.data.addProperty("description", "");
     }
 
     @Override
@@ -40,5 +42,41 @@ public class DefaultLogItem implements LogItem {
     @Override
     public JsonObject getJsonObject() {
         return data;
+    }
+
+    @Override
+    public String getCategoryAsText() {
+        try{
+            return this.data.get("category").getAsString();
+        }catch(NullPointerException e){
+            return null;
+        }
+    }
+
+    @Override
+    public String getDescriptionAsText() {
+        try{
+            return this.data.get("description").getAsString();
+        }catch(NullPointerException e){
+            return null;
+        }
+    }
+
+    @Override
+    public String getCurrencyCode() {
+        try{
+            return this.data.getAsJsonObject("expense").get("currency_code").getAsString();
+        }catch(NullPointerException e){
+            return null;
+        }
+    }
+
+    @Override
+    public float getExpenseAmount() {
+        try{
+            return this.data.getAsJsonObject("expense").get("amount").getAsNumber().floatValue();
+        }catch(NullPointerException e){
+            throw new NullPointerException();
+        }
     }
 }
