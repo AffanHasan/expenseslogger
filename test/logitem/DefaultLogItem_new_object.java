@@ -85,9 +85,15 @@ public class DefaultLogItem_new_object {
     }
     
     @Test
-    public void currency_locale_should_match_systems_default_currency_locale_for_a_newly_created_object() {
+    public void currency_code_should_match_default_currency_code() {
         assertEquals(this.logItem.getCurrencyCode(),
                     CommonPropsFactory.getInstance().getSystemCurrencyCode());
+    }
+    
+    @Test
+    public void currency_symbol_should_match_default_currency_symbol() {
+        assertEquals(this.logItem.getCurrencySymbol(),
+                    CommonPropsFactory.getInstance().getSystemCurrencySymbol());
     }
     
     @Test

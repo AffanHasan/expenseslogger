@@ -21,6 +21,8 @@ public interface CommonProps {
      */
     String getSystemCurrencyCode();
     
+    String getSystemCurrencySymbol();
+    
     /**
      * Returns the systems default currency object
      * @return 

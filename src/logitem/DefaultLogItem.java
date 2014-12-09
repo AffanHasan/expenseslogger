@@ -22,6 +22,7 @@ public class DefaultLogItem implements LogItem {
 //      Adding "expense" as JsonObject
         JsonObject expense = new JsonObject();
         expense.addProperty("currency_code", CommonPropsFactory.getInstance().getSystemCurrencyCode());
+        expense.addProperty("currency_symbol", CommonPropsFactory.getInstance().getSystemCurrencySymbol());
         expense.addProperty("amount", 0.0);        
         this.data.add("expense", expense);
 
@@ -70,6 +71,15 @@ public class DefaultLogItem implements LogItem {
             return null;
         }
     }
+    
+    @Override
+    public String getCurrencySymbol() {
+        try{
+            return this.data.getAsJsonObject("expense").get("currency_symbol").getAsString();
+        }catch(NullPointerException e){
+            return null;
+        }
+    }
 
     @Override
     public float getExpenseAmount() {
@@ -89,4 +99,5 @@ public class DefaultLogItem implements LogItem {
     public void setCategory(String category) {
         this.data.addProperty("category", category);
     }
+
 }

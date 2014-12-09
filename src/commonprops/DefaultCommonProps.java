@@ -40,5 +40,10 @@ class DefaultCommonProps implements CommonProps {
     public Currency getSystemCurrency() {
         return this._defaultCurrency;
     }
+
+    @Override
+    public String getSystemCurrencySymbol() {
+        return this._defaultCurrency.getSymbol();
+    }
     
 }

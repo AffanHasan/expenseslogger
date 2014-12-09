@@ -31,6 +31,8 @@ public interface LogItem{
     
     String getCurrencyCode();
     
+    String getCurrencySymbol();
+    
     float getExpenseAmount();
     
     void setDescription(String description);
