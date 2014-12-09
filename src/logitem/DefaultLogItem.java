@@ -100,4 +100,8 @@ public class DefaultLogItem implements LogItem {
         this.data.addProperty("category", category);
     }
 
+    @Override
+    public void setExpenseAmount(float amount) {
+        this.data.getAsJsonObject("expense").addProperty("amount", amount);
+    }
 }

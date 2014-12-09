@@ -33,9 +33,15 @@ public interface LogItem{
     
     String getCurrencySymbol();
     
+    /**
+     * Returns a float amount value
+     * @return 
+     */
     float getExpenseAmount();
     
     void setDescription(String description);
     
     void setCategory(String category);
+    
+    void setExpenseAmount(float amount);
 }

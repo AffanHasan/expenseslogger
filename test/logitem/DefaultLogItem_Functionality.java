@@ -6,6 +6,8 @@
 package logitem;
 
 import com.google.gson.Gson;
+import com.google.gson.JsonObject;
+import commonprops.CommonPropsFactory;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -24,6 +26,8 @@ public class DefaultLogItem_Functionality {
     private Gson gson;
     
     private String text = null;
+    
+    private float _amount = 10.0f;
     
     public DefaultLogItem_Functionality() {
         logItem = new DefaultLogItem();
@@ -58,5 +62,29 @@ public class DefaultLogItem_Functionality {
         this.text = "Sample Category";
         logItem.setCategory(text);
         assertEquals(text, logItem.getCategory());
+    }
+    
+    @Test
+    public void setExpense(){
+        setExpenseAmount(_amount);
+        assertEquals(_amount, this.logItem.getExpenseAmount(), 0.0);
+    }
+    
+    @Test
+    public void setExpense_currency_symbol_correctness(){
+        setExpenseAmount(_amount);
+        assertEquals(CommonPropsFactory.getInstance().getSystemCurrencySymbol(), 
+                        this.logItem.getCurrencySymbol());
+    }
+    
+    @Test
+    public void setExpense_currency_code_correctness(){
+        setExpenseAmount(_amount);
+        assertEquals(CommonPropsFactory.getInstance().getSystemCurrencyCode(),
+                        this.logItem.getCurrencyCode());
+    }
+    
+    private void setExpenseAmount(float amount){
+        this.logItem.setExpenseAmount(amount);
     }
 }
