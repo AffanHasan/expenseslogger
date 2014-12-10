@@ -26,4 +26,6 @@ public interface Day {
     void updateLogItem(int index, LogItem logItem);
     
     LogItem getLogItem(int index);
+    
+    String toJson();
 }

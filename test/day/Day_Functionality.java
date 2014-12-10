@@ -5,6 +5,9 @@
  */
 package day;
 
+import com.google.gson.Gson;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonSyntaxException;
 import logitem.DefaultLogItem;
 import logitem.LogItem;
 import org.junit.After;
@@ -102,6 +105,42 @@ public class Day_Functionality {
         LogItem item = null;
         iobException.expect(IndexOutOfBoundsException.class);
         _day.updateLogItem(2, item);
+    }
+    
+    @Test
+    public void toJson_must_return_valid_json_string() {
+        try{
+            String json = _day.toJson();
+            Gson gson = new Gson();
+            System.out.println(gson.fromJson(json, JsonObject.class));
+        }catch(JsonSyntaxException e){
+            fail("Invalid json string returned");
+        }
+    }
+    
+    @Test
+    public void toJson_test_for_structure_validation() {
+        try{
+            String json = _day.toJson();
+            Gson gson = new Gson();
+            JsonObject object = gson.fromJson(json, JsonObject.class);
+            validateDocumentStructure(object);
+        }catch(JsonSyntaxException e){
+            fail("Invalid json string returned");
+        }
+    }
+    
+    private void validateDocumentStructure(JsonObject object){
+        try{
+            assertTrue(object.has("date"));
+            object.get("date").getAsString();
+            assertTrue(object.has("log_entries"));
+            object.get("log_entries").getAsJsonArray();
+        }catch( IllegalStateException | ClassCastException e){
+            fail(e.getMessage());
+        }catch(Exception e){
+            fail(e.getMessage());
+        }
     }
     
     private void _addLogItem(Day day, LogItem logItem){

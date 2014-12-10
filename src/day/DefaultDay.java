@@ -5,6 +5,8 @@
  */
 package day;
 
+import com.google.gson.JsonArray;
+import com.google.gson.JsonObject;
 import com.sun.istack.internal.logging.Logger;
 import java.util.ArrayList;
 import java.util.Date;
@@ -67,6 +69,8 @@ public class DefaultDay implements Day{
         try{
             LogItem set = this.logEntries.set(index, logItem);
         }catch(NullPointerException e){
+            Logger.getLogger(DefaultDay.class).log(Level.INFO, e.getMessage());
+        }catch(IndexOutOfBoundsException e){
             throw new IndexOutOfBoundsException();
         }
     }
@@ -83,4 +87,23 @@ public class DefaultDay implements Day{
             throw new IndexOutOfBoundsException();
         }
     }
+
+    @Override
+    public String toJson() {
+        return this.toString();
+    }
+
+    @Override
+    public String toString() {
+        JsonObject json = new JsonObject();
+        
+        json.addProperty("date", this.getDate().toString());
+        JsonArray logEntries = new JsonArray();
+        for(LogItem entry : this.getLogEntries()){
+            logEntries.add(entry.getJsonObject());
+        }
+        json.add("log_entries", logEntries);
+        return json.toString();
+    }
+    
 }
