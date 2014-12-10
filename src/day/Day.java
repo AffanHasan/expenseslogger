@@ -15,7 +15,15 @@ import logitem.LogItem;
  */
 public interface Day {
     
+    Date getDate();
+    
     List<LogItem> getLogEntries();
     
-    Date getDate();
+    void addLogItem(LogItem logItem);
+    
+    void removeLogItem(int index);
+    
+    void updateLogItem(int index, LogItem logItem);
+    
+    LogItem getLogItem(int index);
 }
